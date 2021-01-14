@@ -15,6 +15,7 @@
 	],
 	"TargetPlatforms": [
 		"WindowsNoEditor",
-		"HTML5"
+		"HTML5",
+		"Android"
 	]
 }

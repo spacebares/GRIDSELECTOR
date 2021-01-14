@@ -2,10 +2,14 @@
 
 #include "GRIDSELECTORPlayerController.h"
 
-
-
-
-void AGRIDSELECTORPlayerController::FlushPressedKeys()
+bool AGRIDSELECTORPlayerController::InputKey(FKey Key, EInputEvent EventType, float AmountDepressed, bool bGamepad)
 {
+	const bool bResult = Super::InputKey(Key, EventType, AmountDepressed, bGamepad);
 
+	if (OnPlayerInputKey.IsBound())
+	{
+		OnPlayerInputKey.Broadcast(Key, EventType);
+	}
+
+	return bResult;
 }

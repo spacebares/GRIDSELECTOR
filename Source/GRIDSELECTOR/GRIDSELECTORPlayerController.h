@@ -6,6 +6,8 @@
 #include "GameFramework/PlayerController.h"
 #include "GRIDSELECTORPlayerController.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPlayerInputKey, const FKey, Key, const EInputEvent, InputEvent);
+
 /**
  * 
  */
@@ -15,8 +17,9 @@ class GRIDSELECTOR_API AGRIDSELECTORPlayerController : public APlayerController
 	GENERATED_BODY()
 	
 public:
-	/** Flushes the current key state. */
-	virtual void FlushPressedKeys() override;
+	virtual bool InputKey(FKey Key, EInputEvent EventType, float AmountDepressed, bool bGamepad) override;
 	
+	UPROPERTY(BlueprintAssignable)
+		FOnPlayerInputKey OnPlayerInputKey;
 	
 };
